@@ -141,7 +141,7 @@ object Evaluator {
           s <- r[ByteVector](ctx, sig)
           m <- r[ByteVector](ctx, msg)
           p <- r[ByteVector](ctx, pk)
-        } yield s.flatMap(ss => m.flatMap(mm => p.map(pp => Curve25519.verify(Signature(ss.toArray), mm.toArray, PublicKey(pp.toArray)))))
+        } yield s.flatMap(ss => m.flatMap(mm => p.map(pp => Curve25519.verify(Signature(ss.toArray), Signature(mm.toArray), PublicKey(pp.toArray)))))
       }
 
       case Typed.GETTER(expr, field, _) => tailcall {
